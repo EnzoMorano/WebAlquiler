@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const jsonwebtoken = require('jsonwebtoken');
 const { Usuario } = require('../models');
 
 const login = async (req, res) => {
@@ -12,7 +13,8 @@ const login = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({ error: 'Contraseña incorrecta' });
         }
-        res.status(200).json({ message: 'Login exitoso' });
+        const token = jsonwebtoken.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '12h' });
+        res.status(200).json({ token });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

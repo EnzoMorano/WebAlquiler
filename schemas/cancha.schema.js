@@ -14,4 +14,18 @@ const canchaSchema = Joi.object({
     })
 });
 
-module.exports = { canchaSchema };
+const actualizarCanchaSchema = Joi.object({
+    name: Joi.string().min(3).max(100).messages({
+        'string.min': 'El nombre debe tener al menos 3 caracteres'
+    }),
+    type: Joi.string().min(3).max(50).messages({
+        'any.required': 'El tipo de cancha es obligatorio'
+    }),
+    price: Joi.number().positive().precision(2).messages({
+        'number.positive': 'El precio debe ser un número positivo'
+    })
+}).min(1).messages({
+    'object.min': 'Debe enviar al menos un campo para actualizar'
+});
+
+module.exports = { canchaSchema, actualizarCanchaSchema };

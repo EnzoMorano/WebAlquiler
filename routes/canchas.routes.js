@@ -4,6 +4,6 @@ const { validarCancha } = require('../middlewares/validarCancha.middleware');
 const router = Router();
 
 router.get('/canchas', canchasController.getCanchas);
-// Agregar Post
+router.get('/canchas/:id', canchasController.getCanchaById);
 
 module.exports = router;

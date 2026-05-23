@@ -2,36 +2,27 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reservas', {
+    await queryInterface.createTable('Horarios', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      date: {
-        type: Sequelize.DATEONLY
-      },
-      timeSlot: {
-        type: Sequelize.STRING
-      },
-      clientName: {
-        type: Sequelize.STRING
-      },
-      clientDni: {
-        type: Sequelize.STRING
-      },
-      canchaId: {
+      dayOfWeek: {
         type: Sequelize.INTEGER
       },
-      paymentStatus: {
+      startTime: {
         type: Sequelize.STRING
       },
-      amountPaid: {
-        type: Sequelize.DECIMAL
+      endTime: {
+        type: Sequelize.STRING
       },
-      notes: {
-        type: Sequelize.TEXT
+      slotDuration: {
+        type: Sequelize.INTEGER
+      },
+      active: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -44,6 +35,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reservas');
+    await queryInterface.dropTable('Horarios');
   }
 };

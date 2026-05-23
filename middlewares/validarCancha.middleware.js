@@ -1,4 +1,4 @@
-const { canchaSchema } = require('../schemas/cancha.schema')
+const { canchaSchema, actualizarCanchaSchema } = require('../schemas/cancha.schema')
 
 const validarCancha = (req, res, next) => {
     const { error } = canchaSchema.validate(req.body)
@@ -8,4 +8,12 @@ const validarCancha = (req, res, next) => {
     next()
 }
 
-module.exports = { validarCancha }
+const validarActualizarCancha = (req, res, next) => {
+    const { error } = actualizarCanchaSchema.validate(req.body)
+    if(error){
+        return res.status(400).json({ error: error.details[0].message })
+    }
+    next()
+}
+
+module.exports = { validarCancha, validarActualizarCancha }

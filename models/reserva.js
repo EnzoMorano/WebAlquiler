@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Reserva.belongsTo(models.Cancha, { foreignKey: "fieldId", as: "cancha" })
+      Reserva.belongsTo(models.Cancha, { foreignKey: "canchaId", as: "cancha" })
     }
   }
   Reserva.init({
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     timeSlot: DataTypes.STRING,
     clientName: DataTypes.STRING,
     clientDni: DataTypes.STRING,
-    fieldId: DataTypes.INTEGER,
+    canchaId: DataTypes.INTEGER,
     paymentStatus: DataTypes.STRING,
     amountPaid: DataTypes.DECIMAL,
     notes: DataTypes.TEXT
