@@ -11,7 +11,8 @@ const canchaSchema = Joi.object({
     price: Joi.number().positive().precision(2).required().messages({
         'number.positive': 'El precio debe ser un número positivo',
         'any.required': 'El precio es obligatorio'
-    })
+    }),
+    images: Joi.array().items(Joi.string()).optional()
 });
 
 const actualizarCanchaSchema = Joi.object({
@@ -23,7 +24,8 @@ const actualizarCanchaSchema = Joi.object({
     }),
     price: Joi.number().positive().precision(2).messages({
         'number.positive': 'El precio debe ser un número positivo'
-    })
+    }),
+    images: Joi.array().items(Joi.string()).optional()
 }).min(1).messages({
     'object.min': 'Debe enviar al menos un campo para actualizar'
 });
